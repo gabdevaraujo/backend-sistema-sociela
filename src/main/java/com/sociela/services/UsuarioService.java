@@ -29,8 +29,18 @@ public class UsuarioService {
 	}
 	
 	public Usuario fromDto(UsuarioDTO objDTO) {
-		Usuario usuario = new Usuario(objDTO.getId(), objDTO.getNome(), objDTO.getEmail(), objDTO.getCpf());
+		Usuario usuario = new Usuario(null, objDTO.getNome(), objDTO.getEmail(), objDTO.getCpf(), objDTO.getRg(), objDTO.getDataNascimento(), objDTO.getNomePai(), objDTO.getNomeMae(), objDTO.getOrgao(), objDTO.getAceite());
 		return usuario;
+	}
+
+	public UsuarioDTO toUsuarioDto(Usuario obj) {
+		UsuarioDTO dto = new UsuarioDTO(obj);
+		return dto;
+	}
+
+	public UsuarioDTO save(UsuarioDTO usuarioDTO) {		
+		Usuario usuario = fromDto(usuarioDTO);
+		return toUsuarioDto(repository.save(usuario));
 	}
 
 	
